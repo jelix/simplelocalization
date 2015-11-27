@@ -2,7 +2,7 @@
     "name": "jelix/simplelocalization",
     "type": "library",
     "description": "A simple class to manipulate localized messages",
-    "keywords": [],
+    "keywords": [ "locale", "translation", "l10n" ],
     "homepage": "http://jelix.org",
     "license": "LGPL-2.1",
     "authors": [
