@@ -1,0 +1,27 @@
+{
+    "name": "jelix/simplelocalization",
+    "type": "library",
+    "description": "A simple class to manipulate localized messages",
+    "keywords": [],
+    "homepage": "http://jelix.org",
+    "license": "LGPL-2.1",
+    "authors": [
+        {
+            "name": "Laurent Jouanneau",
+            "email": "laurent@jelix.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "4.3.*"
+    },
+    "extra": {
+    },
+    "autoload": {
+        "psr-4" : {
+            "Jelix\\SimpleLocalization\\" : "lib/"
+        }
+    }
+}
