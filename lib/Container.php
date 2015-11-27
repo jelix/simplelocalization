@@ -15,6 +15,15 @@ class Container {
 
     protected $currentLang;
 
+    /**
+     * @var array
+     *   array(
+     *      'lang code'=> array(
+     *           array('key'=>'words', 'key2'=> 'words2'),
+     *           array('key3'=>'words', 'key4'=> 'words2'),
+     *         )
+     *   )
+     */
     protected $messages = array();
 
     /**
@@ -108,6 +117,7 @@ class Container {
         if ($params !== null || (is_array($params) && count($params) > 0)) {
             $msg = call_user_func_array('sprintf', array_merge (array ($msg), is_array ($params) ? $params : array ($params)));
         }
+
         return $msg;
     }
 
