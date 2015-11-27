@@ -72,18 +72,18 @@ class Container
 
         if (strpos($filePath, '%LANG%') === false) {
             if (!file_exists($filePath)) {
-                throw new \Exception("SimpleLocalization/Container: No file $filePath for messages for $lang");
+                throw new Exception("SimpleLocalization/Container: No file $filePath for messages for $lang");
             }
             $messages = include $filePath;
             if (!is_array($messages)) {
-                throw new \Exception("SimpleLocalization/Container: Bad content in $filePath");
+                throw new Exception("SimpleLocalization/Container: Bad content in $filePath");
             }
             if (isset($messages[$lang]) && is_array($messages[$lang])) {
                 $this->messages[$lang][] = $messages[$lang];
             } elseif (isset($messages['en']) && is_array($messages['en'])) {
                 $this->messages[$lang][] = $messages['en'];
             } else {
-                throw new \Exception("SimpleLocalization/Container: No '$lang' messages in $filePath");
+                throw new Exception("SimpleLocalization/Container: No '$lang' messages in $filePath");
             }
 
             return;
@@ -92,16 +92,25 @@ class Container
         if (!file_exists($file)) {
             $file = str_replace('%LANG%', 'en', $filePath);
             if (!file_exists($file)) {
-                throw new \Exception("SimpleLocalization/Container: No file $file for messages for $lang");
+                throw new Exception("SimpleLocalization/Container: No file $file for messages for $lang");
             }
         }
         $messages = include $file;
         if (!is_array($messages)) {
-            throw new \Exception("SimpleLocalization/Container: Bad content in $file");
+            throw new Exception("SimpleLocalization/Container: Bad content in $file");
         }
         $this->messages[$lang][] = $messages;
     }
 
+    /**
+     * get the string corresponding to the given key.
+     *
+     * @param string $key
+     * @param array  $params values for sprintf when the string contains tags to replace
+     *
+     * @return string the corresponding string
+     * @throw \jelix\SimpleLocalization\Exception  when the key is not found
+     */
     public function get($key, $params = null)
     {
         $msg = null;
@@ -110,8 +119,9 @@ class Container
                 $msg = $messages[$key];
             }
         }
+
         if ($msg === null) {
-            throw new \Exception("Error: don't find message '$key'");
+            throw new Exception("Error: don't find message '$key'");
         }
 
         if ($params !== null || (is_array($params) && count($params) > 0)) {
@@ -121,6 +131,9 @@ class Container
         return $msg;
     }
 
+    /**
+     * Get the lang of string supported by the container.
+     */
     public function getLang()
     {
         return $this->currentLang;

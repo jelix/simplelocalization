@@ -69,4 +69,11 @@ class simpleLocaleTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('bateau', $messages->get('bar'));
     }
 
+    /**
+     * @expectedException \Jelix\SimpleLocalization\Exception
+     */
+    function testMissingKey() {
+        $messages = new \Jelix\SimpleLocalization\Container(__DIR__.'/messages/severallang.php', 'fr');
+        $this->assertEquals('not possible', $messages->get('unknown'));
+    }
 }

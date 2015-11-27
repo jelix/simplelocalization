@@ -46,8 +46,8 @@ Or if you choose to have a single file `translation.php` :
 
 return array(
     'en' => array(
-        'welcome' => 'Bonjour le monde',
-        'thank.you' => 'Merci'
+        'welcome' => 'Hello world',
+        'thank.you' => 'Thank you'
     ),
     'fr' => array(
         'welcome' => 'Bonjour le monde',
