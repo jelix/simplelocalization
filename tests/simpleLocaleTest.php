@@ -8,7 +8,7 @@
 */
 
 
-class simpleLocaleTest extends PHPUnit_Framework_TestCase {
+class simpleLocaleTest extends \PHPUnit\Framework\TestCase {
 
 
     function testSingleFileEn() {
@@ -70,9 +70,10 @@ class simpleLocaleTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException \Jelix\SimpleLocalization\Exception
      */
     function testMissingKey() {
+
+        $this->expectException('\Jelix\SimpleLocalization\Exception');
         $messages = new \Jelix\SimpleLocalization\Container(__DIR__.'/messages/severallang.php', 'fr');
         $this->assertEquals('not possible', $messages->get('unknown'));
     }
